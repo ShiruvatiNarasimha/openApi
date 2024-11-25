@@ -1,11 +1,15 @@
+import { once } from "helpful-decorators";
+
 class DataClass {
   private timeZone: string;
   constructor(timeZone: string) {
     this.timeZone = timeZone;
   }
 
+  @once()
   getTime() {
     var d = new Date();
+    console.log("Hi From GetTime");
     return d.getTime();
   }
 
