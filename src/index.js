@@ -1,42 +1,28 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpful_decorators_1 = require("helpful-decorators");
-class DataClass {
-    constructor(timeZone) {
-        this.timeZone = timeZone;
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+const port = 3000;
+app.use(express_1.default.json());
+let users = [
+    { id: 1, name: "John Doe" },
+    { id: 2, name: "Jane Doe" },
+];
+app.get("/users", (req, res) => {
+    const { name } = req.query;
+    if (name) {
+        const filteredUsers = users.filter((user) => 
+        //@ts-ignore
+        user.name.toLowerCase().includes(name.toLowerCase()));
+        res.json(filteredUsers);
     }
-    getTime() {
-        var d = new Date();
-        console.log("Hi From GetTime");
-        return d.getTime();
+    else {
+        res.json(users);
     }
-    getMonth() {
-        var d = new Date();
-        return d.getMonth();
-    }
-    getTimeZone() {
-        return this.timeZone;
-    }
-    expensiveOpration() {
-        const startTime = new Date().getTime();
-        let ctr = 0;
-        for (let i = 0; i < 10000; i++) {
-            ctr++;
-        }
-        console.log(ctr);
-        const endTime = new Date().getTime();
-        console.log("totoal time taken: " + (endTime - startTime) + "ms");
-    }
-}
-__decorate([
-    (0, helpful_decorators_1.once)()
-], DataClass.prototype, "getTime", null);
-const dataObject = new DataClass("IND");
-const response = dataObject.expensiveOpration();
-console.log(response);
+});
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
