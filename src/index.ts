@@ -1,8 +1,7 @@
-import { Server } from "./../../node_modules/@types/connect/index.d";
 import express from "express";
 
 import swaggerUi from "swagger-ui-express";
-import { openaapiSpec } from "../openapispec";
+import { opeapiSpec } from "../openapispec";
 
 const app = express();
 const port = 3000;
@@ -28,7 +27,8 @@ app.get("/users", (req, res) => {
   }
 });
 
-app.use("/documentation", swaggerUi.Server, swaggerUi.setup(openaapiSpec));
+// Correct usage
+app.use("/documentaion", swaggerUi.serve, swaggerUi.setup(opeapiSpec));
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

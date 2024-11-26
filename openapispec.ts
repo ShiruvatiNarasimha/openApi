@@ -1,4 +1,4 @@
-export const openaapiSpec = {
+export const opeapiSpec = {
   openapi: "3.0.0",
   info: {
     title: "User API",

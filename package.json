@@ -14,5 +14,8 @@
     "express": "^4.21.1",
     "helpful-decorators": "^2.1.0",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/swagger-ui-express": "^4.1.7"
   }
 }
