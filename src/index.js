@@ -25,6 +25,18 @@ app.get("/users", (req, res) => {
         res.json(users);
     }
 });
+app.post("/users", (req, res) => {
+    const { name } = req.query;
+    if (name) {
+        const filteredUsers = users.filter((user) => 
+        //@ts-ignore
+        user.name.toLowerCase().includes(name.toLowerCase()));
+        res.json(filteredUsers);
+    }
+    else {
+        res.json(users);
+    }
+});
 // Correct usage
 app.use("/documentaion", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(openapispec_1.opeapiSpec));
 app.listen(port, () => {
