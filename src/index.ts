@@ -26,8 +26,6 @@ app.get("/users", (req, res) => {
     res.json(users);
   }
 });
-
-// Correct usage
 app.use("/documentaion", swaggerUi.serve, swaggerUi.setup(opeapiSpec));
 
 app.listen(port, () => {
